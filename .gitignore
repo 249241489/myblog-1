@@ -35,5 +35,6 @@ src/main/resources/*.yml
 *.md
 mvnw
 *.cmd
-log/*
-.mvn/*
+log
+.mvn
+target
