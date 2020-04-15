@@ -110,6 +110,19 @@ body {
  color: #D6D0AE;
 }
 
+/*----sticky footer----*/
+.m-sticky-site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.m-sticky-site-content {
+    flex: 1;
+}
+
+
+
 /*---shadow----*/
 .m-shadow-small {
     -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
