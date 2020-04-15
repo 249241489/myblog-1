@@ -1,0 +1,5 @@
+2020-04-14 19:23:11.711  INFO 88355 --- [restartedMain] com.shell845.myblog.MyblogApplication    : Starting MyblogApplication on Pro-Kitkat.local with PID 88355 (/Users/yvette/Code/myblog/target/classes started by yvette in /Users/yvette/Code/myblog)
+2020-04-14 19:23:11.713  INFO 88355 --- [restartedMain] com.shell845.myblog.MyblogApplication    : The following profiles are active: prod
+2020-04-14 19:23:13.501  WARN 88355 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-14 19:23:13.737  WARN 88355 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-04-14 19:23:13.864  INFO 88355 --- [restartedMain] com.shell845.myblog.MyblogApplication    : Started MyblogApplication in 2.57 seconds (JVM running for 8.267)

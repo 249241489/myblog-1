@@ -1,0 +1,253 @@
+<!doctype html>
+<body lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--head th:replace="_fragments :: head(~{::title})"-->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"-->
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <!-- Semantic CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <!-- Customize CSS -->
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+
+    <title>shell845</title>
+</head>
+
+<!-- Nav bar-->
+<nav class="ui attached inverted segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu m-opacity-small">
+            <h2 class="ui header item"><span class="m-poolside">Shell845</span></h2>
+            <a href="#" class="active m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+            <div class="m-item right item m-mobile-hide">
+                <div class="ui icon inverted input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle icon inverted m-top-right button m-mobile-display m-opacity-small">
+        <i class="fas fa-bars m-poolside"></i>
+    </a>
+</nav>
+
+<!-- Content -->
+<div class="m-container m-padded-tb-mid">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <!--Left content-->
+            <div class="twelve wide column">
+                <!--content header-->
+                <div class="ui top attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h3 class="ui header"><span style="color: #6BB6A1">Blog</span></h3>
+                        </div>
+                        <div class="right aligned column">
+                            <h2 class="ui header m-inline-block m-text-thin"><span style="color: #6BB6A1"># </span></h2>
+                            <span class="m-poolside">posts</span>
+                        </div>
+                    </div>
+                </div>
+                <!--content list-->
+                <div class="ui attached segment">
+                    <!--test 1-->
+                    <div class="ui padded vertical segment m-padded-tb-mid">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">Test1</h3>
+                                <p class="m-text">Testing here</p>
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/id/102/100/100" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">shell845</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 04-09-2020
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2834
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" class="ui basic label m-text-thin m-padded-mini"><span style="color: #6BB6A1">a tag</span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="five wide column">
+                                <a href="#">
+                                    <img src="https://picsum.photos/id/102/600/400" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--test 2-->
+                    <div class="ui padded vertical segment m-padded-tb-mid">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">Test1</h3>
+                                <p class="m-text">Testing here</p>
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/id/102/100/100" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">shell845</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 04-09-2020
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2834
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" class="ui basic label m-text-thin m-padded-mini"><span style="color: #6BB6A1">a tag</span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="five wide column">
+                                <a href="#">
+                                    <img src="https://picsum.photos/id/102/600/400" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--content bottom-->
+                <div class="ui bottom attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#" class="ui mini teal basic button">Prev</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#" class="ui mini teal basic button">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Right content-->
+            <div class="four wide column">
+                <!-- category -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="fas fa-book"></i> Categories
+                            </div>
+                            <div class="right aligned column"><a href="#"><i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid vertical menu">
+                            <a href="#" class="item">
+                                <span class="m-poolside">Study</span>
+                                <div class="ui teal basic left pointing label m-text-thin">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                <span class="m-poolside">Study</span>
+                                <div class="ui teal basic left pointing label m-text-thin">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                <span class="m-poolside">Study</span>
+                                <div class="ui teal basic left pointing label m-text-thin">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                <span class="m-poolside">Study</span>
+                                <div class="ui teal basic left pointing label m-text-thin">13</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- tags -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="fas fa-tag"></i> Tags
+                            </div>
+                            <div class="right aligned column"><a href="#"><i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" class="ui teal basic left pointing label m-margin-tb-mini">
+                            tagA <div class="detail">9</div>
+                        </a>
+                        <a href="#" class="ui teal basic left pointing label m-margin-tb-mini">
+                            tagB <div class="detail">9</div>
+                        </a>
+                        <a href="#" class="ui teal basic left pointing label m-margin-tb-mini">
+                            tagB <div class="detail">9</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- latest -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <i class="fab fa-hotjar"></i> Latest</div>
+                        <div class="ui segment">
+                            <a href="#" class="m-poolside"> Story 1 </a>
+                        </div>
+                        <div class="ui segment">
+                            <a href="#" class="m-poolside"> Story 2</a>
+                        </div>
+                        <div class="ui segment">
+                            <a href="#" class="m-poolside"> Story 3</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<!--footer id="footer" class="py-3 bg-dark mb-3 text-white-50">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-12 py-3">
+                <div class="flex-center">
+                    <a class="em-ic text-secondary" href="#"><i class="far fa-envelope fa-lg white-text mr-md-5 mr-3 fa-2x"> </i></a>
+                    <a class="wc-ic text-secondary" href="#"><i class="fab fa-weixin fa-lg white-text mr-md-5 mr-3 fa-2x"> </i></a>
+                    <a class="li-ic text-secondary" href="#"><i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+                    <a class="ins-ic text-secondary" href="#"><i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+        <small>Copyright &copy; shell845</small>
+    </div>
+</footer-->
+<footer class="ui inverted vertical segment m-padded-tb-mid m-opacity-mini">
+    <div class="ui center aligned container">
+        <h5 class="ui inverted header m-text-spaced m-opacity-mid"><span style="color: #6BB6A1"><i class="envelope icon"></i>ych1203@gmail.com</span></h5>
+        <small class="m-text-spaced m-opacity-big"><span style="color: #6BB6A1">Copyright &copy; shell845</span></small>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js" crossorigin="anonymous"></script>
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

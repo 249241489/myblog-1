@@ -1,0 +1,243 @@
+<!doctype html>
+<body lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"-->
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <!-- Semantic CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
+    <!-- typo -->
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <!-- prism -->
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <!-- Customize CSS -->
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+
+    <title>shell845 | post</title>
+</head>
+
+<!-- Nav bar-->
+<nav class="ui attached inverted segment m-padded-tb-mini m-opacity-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu m-opacity-mini">
+            <h2 class="ui header item"><span class="m-poolside">Shell845</span></h2>
+            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+            <div class="m-item right item m-mobile-hide">
+                <div class="ui icon inverted input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle icon inverted m-top-right button m-mobile-display m-opacity-small">
+        <i class="fas fa-bars m-poolside"></i>
+    </a>
+</nav>
+
+<!-- Content -->
+<div class="m-container-small m-padded-tb-mid">
+    <div class="ui container">
+        <!--header-->
+        <div class="ui top attached right aligned segment">
+            <div class="ui horizontal link list">
+                <div class="item">
+                    <i class="calendar icon"></i> 04-09-2020
+                </div>
+                <div class="item">
+                    <i class="eye icon"></i> 2834
+                </div>
+            </div>
+        </div>
+        <!--pic-->
+        <!--div class="ui attached segment">
+            <img src="https://picsum.photos/id/102/300/50" alt="" class="ui fluid rounded image">
+        </div-->
+        <!--content-->
+        <div class="ui attached padded segment">
+            <h2 class="ui center aligned header">Test Header</h2>
+            <div id="postContent" class="typo typo-selection m-padded-side-responsive m-padded-tb-mid">
+                <p><pre><code class="language-java">public static void main(String[] args)</code></pre></p>
+                <p>
+                    What is Lorem Ipsum?
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                    Why do we use it?
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                </p>
+                <p>
+                    Where does it come from?
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                </p>
+            </div>
+            <!--tag-->
+            <div class="m-padded-side-responsive">
+                <div class="ui basic olive left pointing label">tagA</div>
+            </div>
+            <!--sponsor-->
+            <div class="ui center aligned basic segment">
+                <button id="sponsorButton" class="ui olive basic circular button">Buy me a coffee <i class="fas fa-coffee"></i></button>
+            </div>
+            <div class="ui sponsorPopup flowing popup transition hidden">
+                <div class="ui olive basic label">
+                    <div class="ui images" style="font-size: inherit !important;">
+                        <div class="image">
+                            <img src="../static/img/smalllogo.png" th:href="@{/img/smalllogo.png}" alt="" class="ui rounded bordered image" style="width: 120px">
+                            <div>WechatPay</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--post detail-->
+        <div class="ui attached positive message">
+            <div class="ui middle aligned grid">
+                <div class="eleven wide column">
+                    <li>Author: shell84 </li>
+                    <li>Post time: 2020-20-20</li>
+                    <li>Copyright</li>
+                </div>
+                <div class="five wide column">
+                    <img src="../static/img/smalllogo.png" alt="" class="ui right floated rounded bordered image" style="width: 100px">
+                </div>
+            </div>
+        </div>
+        <!--comment-->
+        <div class="ui bottom attached segment">
+            <!--list-->
+            <div class="ui threaded comments">
+                <h3 class="ui dividing header">Comments</h3>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="../static/img/smalllogo.png">
+                    </a>
+                    <div class="content">
+                        <a class="author">Matt</a>
+                        <div class="metadata">
+                            <span class="date">Today at 5:42PM</span>
+                        </div>
+                        <div class="text">
+                            How artistic!
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="../static/img/smalllogo.png">
+                    </a>
+                    <div class="content">
+                        <a class="author">Elliot Fu</a>
+                        <div class="metadata">
+                            <span class="date">Yesterday at 12:30AM</span>
+                        </div>
+                        <div class="text">
+                            <p>This has been very useful for my research. Thanks as well!</p>
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="../static/img/smalllogo.png">
+                            </a>
+                            <div class="content">
+                                <a class="author">Jenny Hess</a>
+                                <div class="metadata">
+                                    <span class="date">Just now</span>
+                                </div>
+                                <div class="text">
+                                    Elliot you are always so right :)
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="../static/img/smalllogo.png">
+                    </a>
+                    <div class="content">
+                        <a class="author">Joe Henderson</a>
+                        <div class="metadata">
+                            <span class="date">5 days ago</span>
+                        </div>
+                        <div class="text">
+                            Dude, this is awesome. Thanks so much
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--form-->
+            <div class="ui form">
+                <div class="field">
+                    <textarea name="content" placeholder="Please input here..."></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-margin-bottom-mini m-mobile-width">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="name">
+                        </div>
+                    </div>
+                    <div class="field m-margin-bottom-mini m-mobile-width">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="text" name="contact" placeholder="email">
+                        </div>
+                    </div>
+                    <div class="field m-margin-bottom-mini m-mobile-width">
+                        <button class="ui olive button m-mobile-width"><i class="edit icon"></i> Reply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="ui inverted vertical segment m-padded-tb-mid m-opacity-mini">
+    <div class="ui center aligned container">
+        <h5 class="ui inverted header m-text-spaced m-opacity-mid"><span style="color: #6BB6A1"><i class="envelope icon"></i>ych1203@gmail.com</span></h5>
+        <small class="m-text-spaced m-opacity-big"><span style="color: #6BB6A1">Copyright &copy; shell845</span></small>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js" crossorigin="anonymous"></script>
+<!-- prism -->
+<script src="../static/lib/prism/prism.js" th:href="@{/lib/prism/prism.js}"></script>
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('#sponsorButton').popup({
+        popup: $('.sponsorPopup.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+</script>
+</body>
+</html>
