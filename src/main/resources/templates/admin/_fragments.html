@@ -28,9 +28,10 @@
         <div class="ui container">
             <div class="ui inverted secondary stackable menu m-opacity-mini">
                 <h2 class="ui header item"><span class="m-poolside">Backstage</span></h2>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-bookmark"></i> Categories</span></a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-tags"></i> Tags</span></a>
+                <a href="#" th:href="@{/admin/history}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
                 <div class="right menu">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -85,6 +86,14 @@
             $('.ui.dropdown').dropdown({
                 on : 'hover'
             });
+
+            //close notification
+            $('.message .close')
+                .on('click', function () {
+                    $(this)
+                        .closest('.message')
+                        .transition('fade');
+                });
         </script>
     </th:block>
 </body>
