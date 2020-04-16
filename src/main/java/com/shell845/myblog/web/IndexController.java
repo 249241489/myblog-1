@@ -21,19 +21,4 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/post")
-    public String post() {
-        return "post";
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin/index";
-    }
-
-    @GetMapping("/upload")
-    public String upload() {
-        return "admin/upload";
-    }
-
 }
