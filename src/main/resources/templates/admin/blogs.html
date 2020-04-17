@@ -12,19 +12,22 @@
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
     <div class="ui container">
-        <form action="#" method="post" class="ui segment form">
+        <div class="ui segment form">
+            <input type="hidden" name="page">
             <div class="inline fields">
                 <div class="field">
                     <input type="text" name="title" placeholder="Title">
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
+                        <input type="hidden" name="typeId">
                         <i class="dropdown icon"></i>
                         <div class="default text">Type</div>
                         <div class="menu">
-                            <div class="item" data-value="1">Error</div>
+                            <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">Error</div>
+                            <!--/*-->
                             <div class="item" data-value="2">Log</div>
+                            <!--*/-->
                         </div>
                     </div>
                 </div>
@@ -35,51 +38,53 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button class="ui olive basic button"><i class="search icon"></i>Search</button>
+                    <button type="button" id="search-btn" class="ui olive basic button"><i class="search icon"></i>Search</button>
                 </div>
             </div>
-        </form>
+        </div>
         <!--table-->
-        <table class="ui table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Recommend</th>
-                <th>Post time</th>
-                <th>Operation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Title1</td>
-                <td>types</td>
-                <td>Yes</td>
-                <td>2020-02-02 9:30</td>
-                <td>
-                    <a href="#" class="ui mini olive button"> Edit </a>
-                    <a href="#" class="ui mini orange button">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th colspan="6">
-                    <div class="ui pagination menu">
-                        <a href="#" class="item">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="icon item">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                    <a href="#" class="ui right floated basic olive button">Add</a>
-                </th>
-            </tr>
-            </tfoot>
-        </table>
+        <div id="table-container">
+            <table th:fragment="blogList" class="ui table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Recommend</th>
+                    <th>Post time</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="blog, iterStat : ${page.content}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${blog.title}">Title1</td>
+                    <td th:text="${blog.type.name}">types</td>
+                    <td th:text="${blog.recommend? 'Yes' : 'No'}">Yes</td>
+                    <td th:text="${blog.updateTime}">2020-02-02 9:30</td>
+                    <td>
+                        <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini olive button"> Edit </a>
+                        <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini orange button">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui pagination menu" th:if="${page.totalPages} > 1">
+                            <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="icon item" th:unless="${page.first}">
+                                <i class="left chevron icon"></i>
+                            </a>
+                            <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="icon item" th:unless="${page.last}">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="ui right floated basic olive button">Add</a>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -88,5 +93,25 @@
 <footer th:replace="admin/_fragments :: footer"></footer>
 <!-- JavaScript -->
 <th:block th:replace="_fragments :: script"></th:block>
+<script>
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+        loaddata();
+    }
+
+    $("#search-btn").click(function () {
+        $("[name='page']").val(0);
+        loaddata();
+    });
+
+    function loaddata() {
+        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
+            title : $("[name='title']").val(),
+            typeId : $("[name='typeId']").val(),
+            recommend : $("[name='recommend']").prop('checked'),
+            page : $("[name='page']").val()
+        });
+    }
+</script>
 </body>
 </html>

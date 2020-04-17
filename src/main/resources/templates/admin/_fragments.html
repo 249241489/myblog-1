@@ -28,15 +28,15 @@
         <div class="ui container">
             <div class="ui inverted secondary stackable menu m-opacity-mini">
                 <h2 class="ui header item"><span class="m-poolside">Backstage</span></h2>
-                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
-                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-bookmark"></i> Categories</span></a>
-                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-tags"></i> Tags</span></a>
-                <a href="#" th:href="@{/admin/history}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Manage Blog</span></a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-bookmark"></i> Manage Type</span></a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-tags"></i> Manage Tag</span></a>
+                <a href="#" th:href="@{/admin/history}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> Manage History</span></a>
                 <div class="right menu">
                     <div class="ui dropdown item">
                         <div class="text">
-                            <img src="../../static/images/smalllogo.png" th:src="@{/images/smalllogo.png}" alt="" class="ui avatar image">
-                            shell845
+                            <img src="../../static/images/smalllogo.png" th:src="${session.user.avatar}==null? @{/images/smalllogo.png} : @{${session.user.avatar}}" alt="" class="ui avatar image">
+                            <span th:text="${session.user.nickname}">name</span>
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
