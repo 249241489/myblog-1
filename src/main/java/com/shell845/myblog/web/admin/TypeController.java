@@ -42,6 +42,7 @@ public class TypeController {
         return "admin/input-type";
     }
 
+    // get existing types
     @Transactional
     @GetMapping(value = "/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
@@ -51,12 +52,13 @@ public class TypeController {
         return "admin/input-type";
     }
 
+    // add new type
     @PostMapping("/types")
     public String post(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
 
         if (type1 != null) {
-            result.rejectValue("name","nameError","Cannot add duplicate types");
+            result.rejectValue("name","nameError","Type already exists");
         }
         if (result.hasErrors()) {
             return "admin/input-type";
@@ -64,9 +66,29 @@ public class TypeController {
 
         Type t = typeService.saveType(type);
         if (t == null) {
-            attributes.addFlashAttribute("message", "Operation fail");
+            attributes.addFlashAttribute("message", "Add fail");
         } else {
-            attributes.addFlashAttribute("message", "Operation complete");
+            attributes.addFlashAttribute("message", "Add complete");
+        }
+        return "redirect:/admin/types";
+    }
+
+    // edit existing type
+    @Transactional
+    @PostMapping("/types/{id}")
+    public String editPost(@Valid Type type, BindingResult result,@PathVariable Long id, RedirectAttributes attributes) {
+        Type type1 = typeService.getTypeByName(type.getName());
+        if (type1 != null) {
+            result.rejectValue("name","nameError","Type already exists");
+        }
+        if (result.hasErrors()) {
+            return "admin/input-type";
+        }
+        Type t = typeService.updateType(id,type);
+        if (t == null ) {
+            attributes.addFlashAttribute("message", "Update fail");
+        } else {
+            attributes.addFlashAttribute("message", "Update success");
         }
         return "redirect:/admin/types";
     }
