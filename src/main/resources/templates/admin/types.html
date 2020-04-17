@@ -7,7 +7,15 @@
 <body class="m-sticky-site">
 <!-- Nav bar-->
 <nav th:replace="admin/_fragments :: menu(2)"></nav>
-<div th:replace="admin/_fragments :: subbar"></div>
+<!-- Sub bar-->
+<div th:fragment="subbar" class="ui attached inverted pointing menu m-opacity-small">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/types/input}" class="item">Add</a>
+            <a href="#" th:href="@{/admin/types}" class="active olive item">List</a>
+        </div>
+    </div>
+</div>
 
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
@@ -33,7 +41,7 @@
                 <td th:text="${type.name}">abcd</td>
                 <td class="right aligned">
                     <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini olive button"> Edit </a>
-                    <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini orange button">Delete</a>
+                    <a href="#" th:href="@{/admin/types/{id}/delete(id=${type.id})}" class="ui mini orange button">Delete</a>
                 </td>
             </tr>
             </tbody>

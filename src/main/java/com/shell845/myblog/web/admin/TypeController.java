@@ -36,6 +36,7 @@ public class TypeController {
         return "admin/types";
     }
 
+    // page of add new type
     @GetMapping("/types/input")
     public String input(Model model) {
         model.addAttribute("type", new Type());
@@ -90,6 +91,14 @@ public class TypeController {
         } else {
             attributes.addFlashAttribute("message", "Update success");
         }
+        return "redirect:/admin/types";
+    }
+
+    // delete type
+    @GetMapping("/types/{id}/delete")
+    public String delete(@PathVariable Long id,RedirectAttributes attributes) {
+        typeService.deleteType(id);
+        attributes.addFlashAttribute("message", "Deleted");
         return "redirect:/admin/types";
     }
 }
