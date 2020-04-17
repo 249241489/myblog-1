@@ -7,11 +7,24 @@
 <body class="m-sticky-site">
 <!-- Nav bar-->
 <nav th:replace="admin/_fragments :: menu(1)"></nav>
-<div th:replace="admin/_fragments :: subbar"></div>
+<div th:fragment="subbar" class="ui attached inverted pointing menu m-opacity-small">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/blogs/input}" class="olive item">Add</a>
+            <a href="#" th:href="@{/admin/blogs}" class="active olive item">List</a>
+        </div>
+    </div>
+</div>
 
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
     <div class="ui container">
+        <!--notification-->
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">Notification:</div>
+            <p th:text="${message}">Operation success</p>
+        </div>
         <div class="ui segment form">
             <input type="hidden" name="page">
             <div class="inline fields">
@@ -20,7 +33,7 @@
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="typeId">
+                        <input type="hidden" name="type.id">
                         <i class="dropdown icon"></i>
                         <div class="default text">Type</div>
                         <div class="menu">
@@ -50,19 +63,21 @@
                     <th></th>
                     <th>Title</th>
                     <th>Type</th>
+                    <th>Update time</th>
+                    <th>Published</th>
                     <th>Recommend</th>
-                    <th>Post time</th>
-                    <th>Operation</th>
+                    <th class="right aligned">Operation</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="blog, iterStat : ${page.content}">
                     <td th:text="${iterStat.count}">1</td>
-                    <td th:text="${blog.title}">Title1</td>
+                    <td th:text="${blog.title}">title</td>
                     <td th:text="${blog.type.name}">types</td>
-                    <td th:text="${blog.isRecommend? 'Yes' : 'No'}">Yes</td>
                     <td th:text="${blog.updateTime}">2020-02-02 9:30</td>
-                    <td>
+                    <td th:text="${blog.published? 'Yes' : 'No'}">Published</td>
+                    <td th:text="${blog.recommend? 'Yes' : 'No'}">Yes</td>
+                    <td class="right aligned">
                         <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini olive button"> Edit </a>
                         <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini orange button">Delete</a>
                     </td>
@@ -70,7 +85,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <div class="ui pagination menu" th:if="${page.totalPages} > 1">
                             <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="icon item" th:unless="${page.first}">
                                 <i class="left chevron icon"></i>
@@ -79,7 +94,7 @@
                                 <i class="right chevron icon"></i>
                             </a>
                         </div>
-                        <a href="#" class="ui right floated basic olive button">Add</a>
+                        <a href="#" th:href="@{/admin/blogs/input}" class="ui right floated basic olive button">Add</a>
                     </th>
                 </tr>
                 </tfoot>
@@ -112,6 +127,14 @@
             page : $("[name='page']").val()
         });
     }
+
+    //close notification
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
 </script>
 </body>
 </html>

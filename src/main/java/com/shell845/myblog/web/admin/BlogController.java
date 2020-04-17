@@ -1,7 +1,9 @@
 package com.shell845.myblog.web.admin;
 
 import com.shell845.myblog.po.Blog;
+import com.shell845.myblog.po.User;
 import com.shell845.myblog.service.BlogService;
+import com.shell845.myblog.service.TagService;
 import com.shell845.myblog.service.TypeService;
 import com.shell845.myblog.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author ych
@@ -22,17 +27,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
+    private static final String INPUT = "admin/input-blog";
+    private static final String LIST = "admin/blogs";
+    private static final String REDIRECT = "redirect:/admin/blogs";
+    private static final String BLOG_LIST = "admin/blogs :: blogList";
+
     @Autowired
     private BlogService blogService;
     @Autowired
     private TypeService typeService;
+    @Autowired
+    private TagService tagService;
 
     // direct to admin blog page
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
-        return "admin/blogs";
+        return LIST;
     }
 
     // return a fragment (the list of blog) instead of the whole html page
@@ -40,6 +52,43 @@ public class BlogController {
     public String search(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          BlogQuery blog, Model model) {
         model.addAttribute("page", blogService.listBlog(pageable, blog));
-        return "admin/blogs :: blogList";
+        // System.out.println("------------blog search--------" + blog.getTitle());
+        return BLOG_LIST;
+    }
+
+    // get admin blog page
+    @GetMapping("/blogs/input")
+    public String input(Model model) {
+        setTypeAndTag(model);
+        model.addAttribute("blog", new Blog());
+        return INPUT;
+    }
+
+    private void setTypeAndTag(Model model) {
+        // model.addAttribute("flags", flagService.listFlag());
+        model.addAttribute("types", typeService.listType());
+        model.addAttribute("tags", tagService.listTag());
+    }
+
+    // input and post new blog
+    @PostMapping("/blogs")
+    public String post(Blog blog, RedirectAttributes attributes, HttpSession session) {
+        blog.setUser((User) session.getAttribute("user"));
+        // blog.setFlag(flagService.getFlag(blog.getFlag().getId()));
+        blog.setType(typeService.getType(blog.getType().getId()));
+        blog.setTags(tagService.listTag(blog.getTagIds()));
+        Blog b;
+        if (blog.getId() == null) {
+            b =  blogService.saveBlog(blog);
+        } else {
+            b = blogService.updateBlog(blog.getId(), blog);
+        }
+
+        if (b == null ) {
+            attributes.addFlashAttribute("message", "Fail");
+        } else {
+            attributes.addFlashAttribute("message", "Success");
+        }
+        return REDIRECT;
     }
 }

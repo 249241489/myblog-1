@@ -7,12 +7,20 @@
 <body class="m-sticky-site">
 <!-- Nav bar-->
 <nav th:replace="admin/_fragments :: menu(0)"></nav>
-<div th:replace="admin/_fragments :: subbar"></div>
+<div th:fragment="subbar" class="ui attached inverted pointing menu m-opacity-small">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/blogs/input}" class="active olive item">Add</a>
+            <a href="#" th:href="@{/admin/blogs}" class="olive item">List</a>
+        </div>
+    </div>
+</div>
 
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
     <div class="ui container">
-        <form action="#" method="post" class="ui form">
+        <form id="blog-form" action="#" th:action="@{/admin/blogs}" method="post" class="ui form">
+            <input type="hidden" name="published">
             <div class=" required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact olive basic dropdown label">
@@ -25,19 +33,13 @@
                             <div class="item" data-value="Translate">Translate</div>
                         </div>
                     </div>
-                    <input type="text" name="title" placeholder="Title">
+                    <input required="required" type="text" name="title" placeholder="Title">
                 </div>
             </div>
             <!--content-->
             <div class="field">
                 <div id="md-content" style="z-index: 1 !important;">
-                    <textarea placeholder="Content" name="content" style="display: none">
-                        #### Disabled options
-                        - TeX (Based on KaTeX);
-                        - Emoji;
-                        - Task lists;
-                        - HTML tags decode;
-                        - Flowchart and Sequence Diagram;
+                    <textarea required="required" placeholder="Markdown input" name="content" style="display: none">
                     </textarea>
                 </div>
             </div>
@@ -47,26 +49,27 @@
                     <div class="ui left labeled action input">
                         <label class="ui compact olive basic label">Category</label>
                         <div class="ui fluid selection dropdown">
-                            <input type="hidden" name="type">
+                            <input type="hidden" name="type.id">
                             <i class="dropdown icon"></i>
                             <div class="default text">Category</div>
                             <div class="menu">
-                                <div class="item" data-value="1">Error</div>
-                                <div class="item" data-value="2">DevGuide</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">Error</div>
+                                <!--/*-->
+                                <div class="item" data-value="2">Log</div>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="field field">
+                <div class="field">
                     <div class="ui left labeled action input">
                         <label class="ui compact olive basic label">Tag</label>
                         <div class="ui fluid multiple search selection dropdown">
-                            <input type="hidden" name="tag">
+                            <input type="hidden" name="tagIds">
                             <i class="dropdown icon"></i>
                             <div class="default text">Tag</div>
                             <div class="menu">
-                                <div class="item" data-value="1">Java</div>
-                                <div class="item" data-value="2">MySQL</div>
+                                <div th:each="tag: ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.tagName}">Java</div>
                             </div>
                         </div>
                     </div>
@@ -76,34 +79,34 @@
             <div class="field">
                 <div class="ui left labeled input">
                     <label class="ui olive basic label">Picture</label>
-                    <input type="text" name="indexPicture" placeholder="Picture">
+                    <input type="text" name="headerPicture" placeholder="Picture">
                 </div>
             </div>
 
-            <!--buttom-->
+            <!--button-->
             <div class="inline fields">
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="recommend" name="recommend" class="hidden">
-                        <label for="recommend">Recommend</label>
+                        <input type="checkbox" id="isRecommend" name="isRecommend" class="hidden">
+                        <label for="isRecommend">Recommend</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="repost" name="repost" class="hidden">
-                        <label for="repost">Repost</label>
+                        <input type="checkbox" id="isRepost" name="isRepost" class="hidden">
+                        <label for="isRepost">Repost</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="sponsor" name="sponsor" class="hidden">
-                        <label for="sponsor">Sponsor</label>
+                        <input type="checkbox" id="isSponsor" name="isSponsor" class="hidden">
+                        <label for="isSponsor">Sponsor</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="comment" name="comment" class="hidden">
-                        <label for="comment">Comment</label>
+                        <input type="checkbox" id="isComment" name="isComment" class="hidden">
+                        <label for="isComment">Comment</label>
                     </div>
                 </div>
             </div>
@@ -112,8 +115,8 @@
             <!--bottom-->
             <div class="ui right aligned container">
                 <button type="button" class="ui button" onclick="window.history.go(-1)">Back</button>
-                <button class="ui blue button">Save</button>
-                <button class="ui olive button">Upload</button>
+                <button type="button" id="save-btn" class="ui blue button">Save</button>
+                <button type="button" id="publish-btn" class="ui olive button">Publish</button>
             </div>
         </form>
     </div>
@@ -165,6 +168,26 @@
              }
         }
     });
+
+   // save
+   $('#save-btn').click(function () {
+       $('[name="published"]').val(false);
+       $('#blog-form').submit();
+   });
+
+   // publish
+   $('#publish-btn').click(function () {
+       $('[name="published"]').val(true);
+       $('#blog-form').submit();
+   });
+
+   //close notification
+   $('.message .close')
+       .on('click', function () {
+           $(this)
+               .closest('.message')
+               .transition('fade');
+       });
 
 </script>
 </body>

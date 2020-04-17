@@ -17,6 +17,9 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;
+
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
     private String headerPicture;
     private String flag;
@@ -25,6 +28,16 @@ public class Blog {
     private boolean isRepost;
     private boolean isComment;
     private boolean isRecommend;
+    private boolean published;
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
@@ -66,6 +79,10 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    // for temporary usage, not write to DB
+    @Transient
+    private String tagIds;
 
     public List<Comment> getComments() {
         return comments;
@@ -172,6 +189,14 @@ public class Blog {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
     }
 
     @Override
