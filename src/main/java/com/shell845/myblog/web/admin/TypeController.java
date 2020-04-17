@@ -30,7 +30,7 @@ public class TypeController {
     private TypeService typeService;
 
     @GetMapping("/types")
-    public String types(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
+    public String types(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.ASC)
                                     Pageable pageable, Model model) {
         model.addAttribute("page", typeService.listType(pageable));
         return "admin/types";
@@ -48,8 +48,8 @@ public class TypeController {
     @GetMapping(value = "/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         Type type = typeService.getType(id);
+//        System.out.println("----------------editInput-------" + type.toString());
         model.addAttribute("type", type);
-        System.out.println("------------" + type.toString());
         return "admin/input-type";
     }
 
@@ -77,7 +77,7 @@ public class TypeController {
     // edit existing type
     @Transactional
     @PostMapping("/types/{id}")
-    public String editPost(@Valid Type type, BindingResult result,@PathVariable Long id, RedirectAttributes attributes) {
+    public String editPost(@Valid Type type, BindingResult result, @PathVariable Long id, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
         if (type1 != null) {
             result.rejectValue("name","nameError","Type already exists");

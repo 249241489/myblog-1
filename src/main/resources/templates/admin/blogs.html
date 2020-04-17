@@ -6,7 +6,7 @@
 
 <body class="m-sticky-site">
 <!-- Nav bar-->
-<nav th:replace="admin/_fragments :: menu(0)"></nav>
+<nav th:replace="admin/_fragments :: menu(1)"></nav>
 <div th:replace="admin/_fragments :: subbar"></div>
 
 <!-- Content -->
@@ -60,7 +60,7 @@
                     <td th:text="${iterStat.count}">1</td>
                     <td th:text="${blog.title}">Title1</td>
                     <td th:text="${blog.type.name}">types</td>
-                    <td th:text="${blog.recommend? 'Yes' : 'No'}">Yes</td>
+                    <td th:text="${blog.isRecommend? 'Yes' : 'No'}">Yes</td>
                     <td th:text="${blog.updateTime}">2020-02-02 9:30</td>
                     <td>
                         <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini olive button"> Edit </a>
@@ -108,7 +108,7 @@
         $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
             title : $("[name='title']").val(),
             typeId : $("[name='typeId']").val(),
-            recommend : $("[name='recommend']").prop('checked'),
+            recommend : $("[name='isRecommend']").prop('checked'),
             page : $("[name='page']").val()
         });
     }

@@ -7,7 +7,7 @@ package com.shell845.myblog.vo;
 public class BlogQuery {
     private String title;
     private Long typeId;
-    private boolean recommend;
+    private boolean isRecommend;
 
     public BlogQuery() {
     }
@@ -29,10 +29,10 @@ public class BlogQuery {
     }
 
     public boolean isRecommend() {
-        return recommend;
+        return isRecommend;
     }
 
     public void setRecommend(boolean recommend) {
-        this.recommend = recommend;
+        this.isRecommend = recommend;
     }
 }

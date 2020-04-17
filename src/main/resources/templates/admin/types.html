@@ -30,14 +30,14 @@
         <table class="ui table">
             <thead>
             <tr>
-                <th></th>
+                <th>ID</th>
                 <th>Category</th>
                 <th class="right aligned">Operation</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="type,iterStat : ${page.content}">
-                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.id}">1</td>
                 <td th:text="${type.name}">abcd</td>
                 <td class="right aligned">
                     <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini olive button"> Edit </a>

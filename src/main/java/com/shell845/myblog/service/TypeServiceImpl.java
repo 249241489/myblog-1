@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-
+import java.util.List;
 
 
 /**
@@ -49,8 +49,16 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional
     @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
+    }
+
+    @Transactional
+    @Override
     public Type updateType(Long id, Type type) {
         Type t = typeRepository.getOne(id);
+//        System.out.println("---------------TypeServiceImpl.updateType-------original " + t.toString());
+//        System.out.println("---------------TypeServiceImpl.updateType-------update to " + type.toString());
         if (t == null) {
             throw new NotFoundException("Type not exists");
         }

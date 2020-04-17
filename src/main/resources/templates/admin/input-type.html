@@ -52,5 +52,14 @@
 
 <!-- JavaScript -->
 <th:block th:replace="_fragments :: script"></th:block>
+<script>
+    //close notification
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+</script>
 </body>
 </html>
