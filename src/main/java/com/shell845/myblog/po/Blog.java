@@ -38,9 +38,9 @@ public class Blog {
         this.published = published;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date createTime;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date updateTime;
 
     @ManyToMany(cascade = {CascadeType.PERSIST})
@@ -197,6 +197,29 @@ public class Blog {
 
     public void setTagIds(String tagIds) {
         this.tagIds = tagIds;
+    }
+
+    public void initTags() {
+        this.tagIds = tagsToIds(this.getTags());
+    }
+
+    // convert tags list to string
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(tag.getId());
+            }
+            return ids.toString();
+        } else {
+            return tagIds;
+        }
     }
 
     @Override

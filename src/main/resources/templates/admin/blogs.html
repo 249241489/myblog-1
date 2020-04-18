@@ -57,7 +57,7 @@
         </div>
         <!--table-->
         <div id="table-container">
-            <table th:fragment="blogList" class="ui table">
+            <table class="ui table" th:fragment="blogList">
                 <thead>
                 <tr>
                     <th></th>
@@ -74,7 +74,7 @@
                     <td th:text="${iterStat.count}">1</td>
                     <td th:text="${blog.title}">title</td>
                     <td th:text="${blog.type.name}">types</td>
-                    <td th:text="${blog.updateTime}">2020-02-02 9:30</td>
+                    <td th:text="${blog.updateTime}">2020-02-02</td>
                     <td th:text="${blog.published? 'Yes' : 'No'}">Published</td>
                     <td th:text="${blog.recommend? 'Yes' : 'No'}">Yes</td>
                     <td class="right aligned">
@@ -123,7 +123,7 @@
         $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
             title : $("[name='title']").val(),
             typeId : $("[name='typeId']").val(),
-            recommend : $("[name='isRecommend']").prop('checked'),
+            recommend : $("[name='recommend']").prop('checked'),
             page : $("[name='page']").val()
         });
     }

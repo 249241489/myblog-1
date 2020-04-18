@@ -56,7 +56,7 @@ public class BlogServiceImpl implements BlogService {
                     predicates.add(criteriaBuilder.equal(root.<Type>get("type").get("id"), blog.getTypeId()));
                 }
                 if (blog.isRecommend()) {
-                    predicates.add(criteriaBuilder.equal(root.<Boolean>get("recommend"), blog.isRecommend()));
+                    predicates.add(criteriaBuilder.equal(root.<Boolean>get("isRecommend"), blog.isRecommend()));
                 }
                 criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
                 return null;
@@ -82,9 +82,14 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
-        blog.setViews(0);
+        if (blog.getId() == null) { // add new blog
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setViews(0);
+        } else {                   // update blog
+            blog.setUpdateTime(new Date());
+        }
+
         return blogRepository.save(blog);
     }
 
