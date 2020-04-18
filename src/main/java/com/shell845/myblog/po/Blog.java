@@ -17,6 +17,7 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;
+    private String description;
 
     @Basic(fetch = FetchType.LAZY)
     @Lob
@@ -222,11 +223,20 @@ public class Blog {
         }
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", headerPicture='" + headerPicture + '\'' +
                 ", flag='" + flag + '\'' +
@@ -235,8 +245,14 @@ public class Blog {
                 ", isRepost=" + isRepost +
                 ", isComment=" + isComment +
                 ", isRecommend=" + isRecommend +
+                ", published=" + published +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", user=" + user +
+                ", tags=" + tags +
+                ", type=" + type +
+                ", comments=" + comments +
+                ", tagIds='" + tagIds + '\'' +
                 '}';
     }
 }
