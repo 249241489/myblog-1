@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author ych
@@ -34,7 +36,7 @@ public class IndexController {
 
     @Transactional
     @GetMapping("/")
-    public String index(@PageableDefault(size = 5, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String index(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         Model model) {
         model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("types", typeService.listTypeTop(5));
@@ -43,22 +45,25 @@ public class IndexController {
         return "index";
     }
 
-    /*@PostMapping("/search")
+    // search page
+    @PostMapping("/search")
     public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          @RequestParam String query, Model model) {
-        model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
+        model.addAttribute("page", blogService.listBlog("%" + query + "%", pageable));
         model.addAttribute("query", query);
         return "search";
-    }*/
+    }
 
-    /*@GetMapping("/search/{query}")
+    // search result page
+    @GetMapping("/search/{query}")
     public String search_get(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                              @PathVariable String query, Model model) {
         model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
         model.addAttribute("query", query);
         return "search";
-    }*/
+    }
 
+    // blog page
     @Transactional
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {

@@ -12,23 +12,28 @@
 <div class="m-container-small m-padded-tb-mid">
     <div class="ui container">
         <!--header-->
+        <h2 class="ui center aligned header" th:text="${blog.title}">Test Header</h2>
+        <!--sub header-->
         <div class="ui top attached right aligned segment">
             <div class="ui horizontal link list">
                 <div class="item">
-                    <i class="calendar icon"></i> 04-09-2020
+                    <img src="https://picsum.photos/id/102/100/100" th:src="${blog.user.avatar}==null? @{/images/smalllogo.png} : @{${blog.user.avatar}}" alt="" class="ui avatar image">
+                    <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">shell845</a></div>
                 </div>
                 <div class="item">
-                    <i class="eye icon"></i> 2834
+                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">04-09-2020</span>
+                </div>
+                <div class="item">
+                    <i class="eye icon"></i> <span th:text="${blog.views}">2834</span>
                 </div>
             </div>
         </div>
         <!--pic-->
         <!--div class="ui attached segment">
-            <img src="https://picsum.photos/id/102/300/50" alt="" class="ui fluid rounded image">
+            <img src="https://picsum.photos/id/102/600/400" th:src="${blog.headerPicture}==null? @{${blog.headerPicture}} : @{/images/smalllogo.png}" alt="" class="ui rounded image">
         </div-->
         <!--content-->
         <div class="ui attached padded segment">
-            <h2 class="ui center aligned header">Test Header</h2>
             <div id="postContent" class="typo typo-selection m-padded-side-responsive m-padded-tb-mid">
                 <p><pre><code class="language-java">public static void main(String[] args)</code></pre></p>
                 <p>

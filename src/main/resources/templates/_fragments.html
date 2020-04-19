@@ -32,10 +32,12 @@
                 <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
                 <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
                 <div class="m-item right item m-mobile-hide">
-                    <div class="ui icon inverted input">
-                        <input type="text" placeholder="Search...">
-                        <i class="search link icon"></i>
-                    </div>
+                    <form name="search" action="#" method="post" th:action="@{/search}">
+                        <div class="ui icon inverted input">
+                            <input type="text" name="query" placeholder="Search..." th:value="${query}">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
