@@ -19,7 +19,7 @@ public class Type {
     @NotBlank(message = "name cannot be empty")
     private String name;
 
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
     private List<Blog> blogs = new ArrayList<>();
 
     public Type() {

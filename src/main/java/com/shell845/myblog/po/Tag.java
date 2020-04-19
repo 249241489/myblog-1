@@ -17,7 +17,7 @@ public class Tag {
     private Long id;
     private String tagName;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
     private List<Blog> blogs = new ArrayList<>();
 
     public List<Blog> getBlogs() {

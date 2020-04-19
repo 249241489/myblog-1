@@ -1,6 +1,7 @@
 package com.shell845.myblog.service;
 
 import com.shell845.myblog.po.Tag;
+import com.shell845.myblog.po.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,6 +21,8 @@ public interface TagService {
     Page<Tag> listTag(Pageable pageable);
 
     List<Tag> listTag();
+
+    List<Tag> listTagTop(Integer size);
 
     List<Tag> listTag(String ids);
 

@@ -20,6 +20,8 @@ public interface BlogService {
 
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 
+    Page<Blog> listBlog(Pageable pageable);
+
     List<Blog> listRecommendBlogTop(Integer size);
 
     Map<String,List<Blog>> archiveBlog();
