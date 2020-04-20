@@ -19,7 +19,7 @@ public class Blog {
     private String title;
     private String description;
 
-    @Basic(fetch = FetchType.LAZY)
+    // @Basic(fetch = FetchType.LAZY)
     @Lob
     private String content;
     private String headerPicture;
@@ -31,18 +31,13 @@ public class Blog {
     private boolean isRecommend;
     private boolean published;
 
-    public boolean isPublished() {
-        return published;
-    }
-
-    public void setPublished(boolean published) {
-        this.published = published;
-    }
-
     @Temporal(TemporalType.DATE)
     private Date createTime;
     @Temporal(TemporalType.DATE)
     private Date updateTime;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Tag> tags = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST})
     public List<Tag> getTags() {
@@ -63,9 +58,6 @@ public class Blog {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @ManyToMany
-    private List<Tag> tags = new ArrayList<>();
 
     @ManyToOne
     private Type type;
@@ -229,6 +221,14 @@ public class Blog {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
     }
 
     @Override
