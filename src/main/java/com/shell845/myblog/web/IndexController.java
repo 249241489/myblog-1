@@ -64,7 +64,7 @@ public class IndexController {
     }
 
     // blog page
-    @Transactional
+    // @Transactional
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {
         model.addAttribute("blog", blogService.getAndConvert(id));

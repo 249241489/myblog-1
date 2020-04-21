@@ -46,14 +46,14 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getAndConvert(Long id) {
         Blog blog = blogRepository.getOne(id);
+        System.out.println("------------- " + blogRepository.getOne(id));
         if (blog == null) {
             throw new NotFoundException("The blog disappears");
         }
         Blog b = new Blog();
-        BeanUtils.copyProperties(blog,b);
+        BeanUtils.copyProperties(blog, b);
         String content = b.getContent();
         b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
-
         blogRepository.updateViews(id);
         return b;
     }

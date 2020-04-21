@@ -9,5 +9,10 @@
       "name": "spring.resources.add-mappings=true",
       "type": "java.lang.String",
       "description": "Description for spring.resources.add-mappings=true."
+    },
+    {
+      "name": "avatar",
+      "type": "java.lang.String",
+      "description": "Description for avatar."
     }
   ] }
