@@ -31,7 +31,7 @@
                 <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
                 <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-bookmark"></i> Categories</span></a>
                 <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
-                <a href="#" th:href="@{/archives/-1}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+                <a href="#" th:href="@{/history}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
                 <div class="m-item right item m-mobile-hide">
                     <form name="search" action="#" method="post" th:action="@{/search}">
                         <div class="ui icon inverted input">
@@ -50,7 +50,7 @@
     <!--footer-->
     <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-mid m-opacity-mini">
         <div class="ui center aligned container">
-            <h5 class="ui inverted header m-text-spaced m-opacity-mid"><span style="color: #6BB6A1"><i class="envelope icon"></i>ych1203@gmail.com</span></h5>
+            <h5 class="ui inverted header m-text-spaced m-opacity-mid"><span style="color: #6BB6A1"><i class="envelope icon"></i><span th:text="#{index.email}">email</span></span></h5>
             <small class="m-text-spaced m-opacity-big"><span style="color: #6BB6A1">Copyright &copy; shell845</span></small>
         </div>
     </footer>

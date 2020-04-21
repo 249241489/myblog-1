@@ -1,42 +1,12 @@
 <!doctype html>
-<body lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"-->
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
-    <!-- Semantic CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
-    <!-- Customize CSS -->
-    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
-
-    <title>shell845 | history</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>shell845 | categories</title>
 </head>
 
+<body>
 <!-- Nav bar-->
-<nav class="ui attached inverted segment m-padded-tb-mini m-opacity-mini m-shadow-small">
-    <div class="ui container">
-        <div class="ui inverted secondary stackable menu m-opacity-mini">
-            <h2 class="ui header item"><span class="m-poolside">Shell845</span></h2>
-            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
-            <a href="#" class="m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
-            <a href="#" class="active m-item item m-mobile-hide"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
-            <div class="m-item right item m-mobile-hide">
-                <div class="ui icon inverted input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui menu toggle icon inverted m-top-right button m-mobile-display m-opacity-small">
-        <i class="fas fa-bars m-poolside"></i>
-    </a>
-</nav>
+<nav th:replace="_fragments :: menu(4)" ></nav>
 
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
@@ -48,52 +18,33 @@
                     <h3 class="ui header"><span style="color: #6BB6A1">History</span></h3>
                 </div>
                 <div class="right aligned column">
-                    <h2 class="ui header m-inline-block m-text-thin"><span style="color: #6BB6A1"># </span></h2>
+                    <h2 class="ui header m-inline-block m-text-thin"><span style="color: #6BB6A1" th:text="${blogCount}"># </span></h2>
                     <span class="m-poolside">posts</span>
                 </div>
             </div>
         </div>
         <!---by date-->
-        <h2 class="ui center aligned header grey">2020</h2>
-        <div class="ui fluid vertical menu">
-            <a href="#" class="item">
+        <th:block th:each="item : ${archiveMap}">
+            <h2 class="ui center aligned header grey" th:text="${item.key}">2020</h2>
+            <div class="ui fluid vertical menu">
+                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" th:each="blog : ${item.value}">
                 <span>
-                    <i class="olive circle icon"></i>Post A
+                    <i class="olive circle icon"></i><span th:text="${blog.title}">Post A</span>
                 </span>
-                <div class="ui olive basic left pointing label">03 Jan</div>
-            </a>
-            <a href="#" class="item">
-                <span>
-                    <i class="olive circle icon"></i>Post A
-                </span>
-                <div class="ui olive basic left pointing label">03 Jan</div>
-            </a>
-        </div>
-        <h2 class="ui center aligned header grey">2019</h2>
-        <div class="ui fluid vertical menu">
-            <a href="#" class="item">
-                <span>
-                    <i class="olive circle icon"></i>Post A
-                </span>
-                <div class="ui olive basic left pointing label">03 Jan</div>
-            </a>
-        </div>
+                    <div class="ui olive basic left pointing label" th:text="${#dates.format(blog.updateTime,'MM-dd')}">03 Jan</div>
+                </a>
+            </div>
+        </th:block>
 
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="ui inverted vertical segment m-padded-tb-mid m-opacity-mini">
-    <div class="ui center aligned container">
-        <h5 class="ui inverted header m-text-spaced m-opacity-mid"><span style="color: #6BB6A1"><i class="envelope icon"></i>ych1203@gmail.com</span></h5>
-        <small class="m-text-spaced m-opacity-big"><span style="color: #6BB6A1">Copyright &copy; shell845</span></small>
-    </div>
-</footer>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js" crossorigin="anonymous"></script>
+<!-- Footer -->
+<footer th:replace="_fragments :: footer"></footer>
+
+<!-- JavaScript -->
+<th:block th:replace="_fragments :: script"></th:block>
 
 <script>
     $('.menu.toggle').click(function () {

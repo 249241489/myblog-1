@@ -139,12 +139,17 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Map<String, List<Blog>> archiveBlog() {
-        return null;
+        List<String> years = blogRepository.findGroupYear();
+        Map<String, List<Blog>> map = new HashMap<>();
+        for (String year : years) {
+            map.put(year, blogRepository.findByYear(year));
+        }
+        return map;
     }
 
     @Override
     public Long countBlog() {
-        return null;
+        return blogRepository.count();
     }
 
     @Transactional
