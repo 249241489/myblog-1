@@ -21,10 +21,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ych
@@ -45,8 +42,8 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog getAndConvert(Long id) {
-        Blog blog = blogRepository.getOne(id);
-        System.out.println("------------- " + blogRepository.getOne(id));
+        // Blog blog = blogRepository.getOne(id);
+        Blog blog = blogRepository.getBlogById(id);
         if (blog == null) {
             throw new NotFoundException("The blog disappears");
         }
