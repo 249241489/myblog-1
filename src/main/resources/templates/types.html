@@ -6,7 +6,7 @@
 
 <body>
 <!-- Nav bar-->
-<nav th:replace="_fragments :: menu(3)" ></nav>
+<nav th:replace="_fragments :: menu(2)" ></nav>
 
 <!-- Content -->
 <div class="m-container-small m-padded-tb-mid">
@@ -15,23 +15,21 @@
         <div class="ui top attached segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <h3 class="ui header"><span style="color: #6BB6A1">Tags</span></h3>
+                    <h3 class="ui header"><span style="color: #6BB6A1">Categories</span></h3>
                 </div>
                 <div class="right aligned column">
-                    <h2 class="ui header m-inline-block m-text-thin"><span style="color: #6BB6A1" th:text="${#arrays.length(tags)}"># </span></h2>
+                    <h2 class="ui header m-inline-block m-text-thin"><span style="color: #6BB6A1" th:text="${#arrays.length(types)}"># </span></h2>
                 </div>
             </div>
         </div>
-        <!--tags-->
+        <!--field-->
         <div class="ui attached segment">
-            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing large label m-margin-tb-mini" th:classappend="${tag.id==activeTagId} ? 'olive'" th:each="tag : ${tags}">
-                <span th:text="${tag.tagName}">tagName</span>
-                <div class="detail" th:text="${#arrays.length(tag.blogs)}">9</div>
-            </a>
+            <div class="ui labeled button m-margin-tb-mini" th:each="type : ${types}">
+                <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic button" th:classappend="${type.id==activeTypeId} ? 'olive'" th:text="${type.name}">test category a</a>
+                <div class="ui basic left pointing label" th:classappend="${type.id==activeTypeId} ? 'olive'" th:text="${#arrays.length(type.blogs)}"> 10</div>
+            </div>
         </div>
-        <!--posts-->
         <div class="ui top attached segment">
-            <!--content-->
             <!--blog content-->
             <div class="ui padded vertical segment m-padded-tb-mid m-padded-side-clear" th:each="blog: ${page.content}">
                 <div class="ui mobile reversed stackable grid">
@@ -39,29 +37,22 @@
                         <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">Test1</a></h3>
                         <p class="m-text" th:text="|${blog.description}...|">Testing here</p>
                         <div class="ui stackable grid">
-                            <div class="row">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://picsum.photos/id/102/100/100" th:src="${blog.user.avatar}" alt="" class="ui avatar image">
-                                            <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">shell845</a></div>
-                                        </div>
-                                        <div class="item">
-                                            <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">04-09-2020</span>
-                                        </div>
-                                        <div class="item">
-                                            <i class="eye icon"></i> <span th:text="${blog.views}">2834</span>
-                                        </div>
+                            <div class="eleven wide column">
+                                <div class="ui mini horizontal link list">
+                                    <div class="item">
+                                        <img src="https://picsum.photos/id/102/100/100" th:src="${blog.user.avatar}" alt="" class="ui avatar image">
+                                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">shell845</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">04-09-2020</span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="eye icon"></i> <span th:text="${blog.views}">2834</span>
                                     </div>
                                 </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" class="ui basic label m-text-thin m-padded-mini"><span style="color: #6BB6A1" th:text="${blog.type.name}">a type</span></a>
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing label m-padded-mini" th:classappend="${tag.id==activeTagId} ? 'olive'" th:each="tag : ${blog.tags}" th:text="${tag.tagName}">tag name</a>
-                                </div>
+                            <div class="right aligned five wide column">
+                                <a href="#" class="ui basic label m-text-thin m-padded-mini"><span style="color: #6BB6A1" th:text="${blog.type.name}">a type</span></a>
                             </div>
                         </div>
                     </div>

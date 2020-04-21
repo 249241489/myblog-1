@@ -17,10 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.*;
 
 /**
@@ -55,7 +52,7 @@ public class BlogServiceImpl implements BlogService {
         return b;
     }
 
-    @Override
+    /*@Override
     public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
         return blogRepository.findAll(new Specification<Blog>() {
             @Override
@@ -74,16 +71,64 @@ public class BlogServiceImpl implements BlogService {
                 return null;
             }
         }, pageable);
+    }*/
+
+    @Override
+    public Page<Blog> listBlog(Pageable pageable, BlogQuery blog, Boolean isAdmin) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                if(!isAdmin){
+                    predicates.add(criteriaBuilder.equal(root.<Boolean>get("published"), true));
+                }
+                if (blog.getTitle() != null && !blog.getTitle().equals("")) {
+                    predicates.add(criteriaBuilder.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
+                }
+                if (blog.getTypeId() != null) {
+                    predicates.add(criteriaBuilder.equal(root.<Type>get("type").get("id"), blog.getTypeId()));
+                }
+                if (blog.isRecommend()) {
+                    predicates.add(criteriaBuilder.equal(root.<Boolean>get("isRecommend"), blog.isRecommend()));
+                }
+                criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
+                return null;
+            }
+        }, pageable);
     }
 
     @Override
     public Page<Blog> listBlog(Pageable pageable) {
-        return blogRepository.findAll(pageable);
+        // return blogRepository.findAll(pageable);
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+                List<Predicate> predicates = new ArrayList<>();
+                predicates.add(cb.equal(root.<Boolean>get("published"), true));
+                cq.where(predicates.toArray(new Predicate[predicates.size()]));
+                return null;
+            }
+        },pageable);
     }
 
     @Override
     public Page<Blog> listBlog(String query, Pageable pageable) {
         return blogRepository.findByQuery(query, pageable);
+    }
+
+    @Override
+    public Page<Blog> listBlog(Long tagId, Pageable pageable) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+                List<Predicate> predicates = new ArrayList<>();
+                Join join = root.join("tags");
+                predicates.add(cb.equal(join.get("id"), tagId));
+                predicates.add(cb.equal(root.<Boolean>get("published"), true));
+                cq.where(predicates.toArray(new Predicate[predicates.size()]));
+                return null;
+            }
+        },pageable);
     }
 
     @Override

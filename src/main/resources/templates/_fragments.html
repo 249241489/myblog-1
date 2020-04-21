@@ -28,9 +28,10 @@
         <div class="ui container">
             <div class="ui inverted secondary stackable menu m-opacity-mini">
                 <h2 class="ui header item"><span class="m-poolside">Shell845</span></h2>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
+                <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><span class="m-daffodil"><i class="fas fa-home"></i> Home</span></a>
+                <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><span class="m-daffodil"><i class="fas fa-bookmark"></i> Categories</span></a>
+                <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><span class="m-daffodil"><i class="fas fa-tag"></i> Tags</span></a>
+                <a href="#" th:href="@{/archives/-1}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><span class="m-daffodil"><i class="fas fa-history"></i> History</span></a>
                 <div class="m-item right item m-mobile-hide">
                     <form name="search" action="#" method="post" th:action="@{/search}">
                         <div class="ui icon inverted input">
