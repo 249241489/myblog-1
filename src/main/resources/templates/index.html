@@ -1,130 +1,130 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
-    <title>shell845 | home</title>
+    <title>shell845 | Home</title>
 </head>
 
-<body>
-<!-- Nav bar-->
-<nav th:replace="_fragments :: menu(1)" ></nav>
+<body id="home">
+<!--part 1-->
+<div class="ui inverted masthead centered segment">
+    <div class="ui page grid">
+        <div class="column">
+            <!-- Nav bar-->
+            <nav th:replace="_fragments :: menu(1)" ></nav>
 
-<!-- Content -->
-<div class="m-container m-padded-tb-mid">
-    <div class="ui container">
-        <div class="ui stackable grid">
-            <!--Left content-->
-            <div class="twelve wide column">
-                <!--content header-->
-                <div class="ui top attached segment">
-                    <div class="ui middle aligned two column grid">
-                        <div class="column">
-                            <h3 class="ui header"><span style="color: #6BB6A1">Blog</span></h3>
-                        </div>
-                        <div class="right aligned column">
-                            <h2 class="ui header m-inline-block m-text-thin" th:text="${page.totalElements}"> # </h2>
-                            <span class="m-poolside">posts</span>
-                        </div>
-                    </div>
-                </div>
-                <!--content list-->
-                <div class="ui attached segment">
-                    <!--content-->
-                    <div class="ui padded vertical segment m-padded-tb-mid" th:each="blog: ${page.content}">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">Test1</a></h3>
-                                <p class="m-text" th:text="|${blog.description}...|">Testing here</p>
-                                <div class="ui stackable grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img src="https://picsum.photos/id/102/100/100" th:src="${blog.user.avatar}==null? @{/images/smalllogo.png} : @{${blog.user.avatar}}" alt="" class="ui avatar image">
-                                                <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">shell845</a></div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'MM-dd-yyyy')}">04-09-2020</span>
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i> <span th:text="${blog.views}">2834</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned five wide column">
-                                        <a href="#" class="ui basic label m-text-thin m-padded-mini"><span style="color: #6BB6A1" th:text="${blog.type.name}">a tag</span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="five wide column">
-                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}">
-                                    <img src="https://picsum.photos/id/102/600/400" th:src="${blog.headerPicture}==null? @{${blog.headerPicture}} : @{/images/smalllogo.png}" alt="" class="ui rounded image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--content bottom-->
-                <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
-                    <div class="ui middle aligned two column grid">
-                        <div class="column">
-                            <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">Prev</a>
-                        </div>
-                        <div class="right aligned column">
-                            <a href="#" th:href="@{/(page=${page.number}+1)}"th:unless="${page.last}" class="ui mini teal basic button">Next</a>
-                        </div>
-                    </div>
+            <!--homepage banner-->
+            <!--desktop-->
+            <div class="ui hidden transition information">
+                <h1 class="ui inverted centered aligned header m-mobile-hide">
+                    Keep Going
+                </h1>
+                <p class="ui centered lead m-mobile-hide">
+                    There's only one corner of the universe you can be sure of improving - <br> your own self.
+                </p>
+                <a href="#" class="large basic inverted animated fade ui button m-mobile-hide" th:href="@{/types/-1}">
+                    <div class="visible content">Welcome <br> to my blog</div>
+                    <div class="hidden content">Read More</div>
+                </a>
+                <div class="ui centerted image m-mobile-hide">
+                    <img class="medium rounded" src="../static/images/homepageheader.jpg" th:src="@{/images/homepageheader.jpg}"/>
                 </div>
             </div>
-            <!--Right content-->
-            <div class="four wide column">
-                <!-- category -->
-                <div class="ui segments">
-                    <div class="ui secondary segment" >
+            <!--mobile-->
+            <h1 class="ui inverted center aligned m-mobile-display header">
+                Welcome to my blog
+            </h1>
+            <p class="ui centered lead m-mobile-display">
+                There's only one corner of the universe you can be sure of improving - <br> your own self.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--part 2-->
+<div class="ui vertical feature segment">
+    <div class="ui centered page grid">
+        <!--latest post header-->
+        <div class="row">
+            <div class="eight wide centered column">
+                <h1 class="ui grey center aligned header m-margin-tb-mid"><span style="color:grey">Latest Posts</span></h1>
+                <div class="ui horizontal divider"><i class="far fa-paper-plane"></i></div>
+                <p class="ui centered lead">Checkout the latest posts...</p>
+            </div>
+        </div>
+        <!--latest post list-->
+        <div class="fourteen wide column">
+            <div class="ui three column center aligned stackable divided grid">
+                <!--column 1-->
+                <div class="column column-feature" th:each="blog : ${recommendBlogs}">
+                    <h2 class="ui center aligned header">
+                        <span style="color:dimgrey" th:text="${blog.title}">Header</span>
+                    </h2>
+                    <p class="m-text" th:text="|${blog.description}...|">Blog description</p>
+                    <p><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="ui primary inverted button">Read</a></p>
+                </div>
+                <!--column 2-->
+                <!--column 3-->
+            </div>
+        </div>
+    </div>
+    <div class="ui centered page grid">
+        <a class="ui teal button m-margin-tb-mid" href="#" th:href="@{/types/-1}">Read More Posts</a>
+    </div>
+</div>
+
+<!--part 3 purple background-->
+<div class="ui purple-background vertical segment">
+    <div class="ui very relaxed stackable centered page grid">
+        <!--explore header-->
+        <div class="row">
+            <div class="eight wide centered column">
+                <h1 class="center aligned ui inverted header"> Explore More </h1>
+                <div class="ui horizontal divider"><i class="far fa-paper-plane"></i></div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            <div class="ui two column aligned stackable divided grid">
+                <!--explore categories-->
+                <div class="column">
+                    <div class="ui segment">
                         <div class="ui two column grid">
-                            <div class="column"><i class="fas fa-book"></i> Categories
+                            <div class="column">
+                                <i class="fas fa-bookmark"></i> Categories
                             </div>
-                            <div class="right aligned column"><a href="#" th:href="@{/types/-1}"><i class="angle double right icon"></i></a>
+                            <div class="right aligned column">
+                                <a href="#" th:href="@{/types/-1}">More <i class="fas fa-angle-double-right"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="ui segment">
                         <div class="ui fluid vertical menu">
                             <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
                                 <span class="m-poolside" th:text="${type.name}">Study</span>
-                                <div class="ui teal basic left pointing label m-text-thin" th:text="*{type.blogs}!=null ? ${#arrays.length(type.blogs)}">13</div>
+                                <div class="ui teal left pointing label m-text-mid" th:text="*{type.blogs}!=null ? ${#arrays.length(type.blogs)}">13</div>
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- tags -->
-                <div class="ui segments">
-                    <div class="ui secondary segment">
-                        <div class="ui two column grid">
-                            <div class="column"><i class="fas fa-tag"></i> Tags
-                            </div>
-                            <div class="right aligned column"><a href="#" th:href="@{/tags/-1}"><i class="angle double right icon"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <!--explore tags-->
+                <div class="column">
                     <div class="ui segment">
-                        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}"  class="ui teal basic left pointing label m-margin-tb-mini" th:each="tag : ${tags}">
-                            <span th:text="${tag.tagName}">tagName</span>
-                            <div class="detail" th:text="*{tag.blogs}!=null ? ${#arrays.length(tag.blogs)}">9</div>
-                        </a>
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="fas fa-tags"></i> Tags
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" th:href="@{/tags/-1}">More <i class="fas fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="ui fluid vertical menu">
+                            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui teal left pointing label m-text-thin m-margin-tb-mid" th:each="tag : ${tags}">
+                                <span th:text="${tag.tagName}">tagName</span>
+                                <div class="detail" th:text="*{tag.blogs}!=null ? ${#arrays.length(tag.blogs)}">9</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- latest -->
-                <div class="ui segments">
-                    <div class="ui secondary segment">
-                        <i class="fab fa-hotjar"></i> Latest</div>
-                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
-                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-poolside" th:text="${blog.title}"> Story 1 </a>
-                        </div>
-                </div>
+
             </div>
         </div>
-
     </div>
 </div>
 

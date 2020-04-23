@@ -40,3 +40,4 @@ mvnw
 log
 .mvn
 target
+.DS_Store
