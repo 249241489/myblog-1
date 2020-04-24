@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
-    <title>shell845 | Home</title>
+    <title>shell845 | home</title>
 </head>
 
 <body id="home">
@@ -15,15 +15,11 @@
             <!--homepage banner-->
             <!--desktop-->
             <div class="ui hidden transition information">
-                <h1 class="ui inverted centered aligned header m-mobile-hide">
-                    Keep Going
-                </h1>
-                <p class="ui centered lead m-mobile-hide">
-                    There's only one corner of the universe you can be sure of improving - <br> your own self.
-                </p>
+                <h1 class="ui inverted centered aligned header m-mobile-hide"><span th:text="#{index.slogan}">slogan</span></h1>
+                <p class="ui centered lead m-mobile-hide" th:text="#{index.words}">words</p>
                 <a href="#" class="large basic inverted animated fade ui button m-mobile-hide" th:href="@{/types/-1}">
-                    <div class="visible content">Welcome <br> to my blog</div>
-                    <div class="hidden content">Read More</div>
+                    <div class="visible content" th:text="#{index.welcome}">welcome</div>
+                    <div class="hidden content" th:text="#{index.readmore}">read more</div>
                 </a>
                 <div class="ui centerted image m-mobile-hide">
                     <img class="medium rounded" src="../static/images/homepageheader.jpg" th:src="@{/images/homepageheader.jpg}"/>
@@ -31,11 +27,9 @@
             </div>
             <!--mobile-->
             <h1 class="ui inverted center aligned m-mobile-display header">
-                Welcome to my blog
+                <sapn th:text="#{index.welcome}">welcome</sapn>
             </h1>
-            <p class="ui centered lead m-mobile-display">
-                There's only one corner of the universe you can be sure of improving - <br> your own self.
-            </p>
+            <p class="ui centered lead m-mobile-display" th:text="#{index.words}">words</p>
         </div>
     </div>
 </div>
@@ -73,7 +67,7 @@
 </div>
 
 <!--part 3 purple background-->
-<div class="ui purple-background vertical segment">
+<div class="ui vertical purplebackground segment">
     <div class="ui very relaxed stackable centered page grid">
         <!--explore header-->
         <div class="row">
@@ -133,6 +127,7 @@
 
 <!-- JavaScript -->
 <th:block th:replace="_fragments :: script"></th:block>
+<script src="../static/js/homepage.js" th:src="@{/js/homepage.js}"></script>
 
 </body>
 </html>

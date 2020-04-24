@@ -15,6 +15,10 @@
     padding-top: 3em !important;
     padding-bottom: 3em !important;
 }
+.m-padded-tb-small {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
 .m-padded-tb-large {
     padding-top: 5em !important;
     padding-bottom: 5em !important;
@@ -29,8 +33,8 @@
 }
 
 .m-padded-side {
-    padding-left: 2em !important;
-    padding-right: 2em !important;
+    padding-left: 3em !important;
+    padding-right: 3em !important;
 }
 
 .m-padded-side-responsive {

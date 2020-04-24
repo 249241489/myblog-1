@@ -15,23 +15,6 @@ html {
   display: none;
 }
 
-.ui.form input:not([type]), .ui.form input[type="text"], .ui.form input[type="email"], .ui.form input[type="date"], .ui.form input[type="datetime-local"], .ui.form input[type="password"], .ui.form input[type="number"], .ui.form input[type="url"], .ui.form input[type="tel"]{
-
-    box-shadow: none;
-    border-color: #e6eaed;
-    background: #fff;
-
-}
-
-.ui.form input:focus:not([type]), .ui.form input[type="text"]:focus, .ui.form input[type="email"]:focus, .ui.form input[type="date"]:focus, .ui.form input[type="datetime-local"]:focus, .ui.form input[type="password"]:focus, .ui.form input[type="number"]:focus, .ui.form input[type="url"]:focus, .ui.form input[type="tel"]:focus
-{
-
-    box-shadow: none;
-    border-color: #ddd;
-    background: #fff;
-
-}
-
 
 /*--------------
     Masthead
@@ -141,7 +124,7 @@ font-weight: 300;margin: 0;padding: 30px 0 0 0;font-size: 16pt;letter-spacing: 1
     border-bottom: 1px solid rgba(255,255,255, 0.1);
 }
 .ui.menu .logo.item{
-    font-weight: 800;color: #ffffff;font-size: 16pt;padding: 0 10px !important;
+    font-weight: 800;color: #ffffff;font-size: 16pt;padding: 10px 10px !important;
 }
 .ui.menu .item{
     color: rgba(255,255,255,0.4);
@@ -181,7 +164,7 @@ margin-right: 3px;
     Recent Works
 ------------------*/
 
-.ui.purple-background{
+#home .purplebackground {
     background: rgb(14,21,58);
 background: -moz-linear-gradient(45deg,  rgba(14,21,58,1) 0%, rgba(115,107,147,1) 48%, rgba(243,201,215,1) 100%);
 background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(14,21,58,1)), color-stop(48%,rgba(115,107,147,1)), color-stop(100%,rgba(243,201,215,1)));
