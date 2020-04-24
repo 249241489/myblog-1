@@ -35,7 +35,7 @@ public class LogAspect {
         Object[] args = joinPoint.getArgs();
         RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
 
-        logger.info("------doBefore------ Request: {}", requestLog);
+        // logger.info("------doBefore------ Request: {}", requestLog);
     }
 
     @After("log()")
@@ -45,7 +45,7 @@ public class LogAspect {
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
-        logger.info("------doAfterReturn------ Request: {}", result);
+        // logger.info("------doAfterReturn------ Request: {}", result);
     }
 
     private class RequestLog {

@@ -21,8 +21,8 @@
                     <div class="visible content" th:text="#{index.welcome}">welcome</div>
                     <div class="hidden content" th:text="#{index.readmore}">read more</div>
                 </a>
-                <div class="ui centerted image m-mobile-hide">
-                    <img class="medium rounded" src="../static/images/homepageheader.jpg" th:src="@{/images/homepageheader.jpg}"/>
+                <div class="ui centered image m-mobile-hide">
+                    <img class="rounded" src="../static/images/homepageheader.jpg" th:src="@{/images/homepageheader.jpg}"/>
                 </div>
             </div>
             <!--mobile-->
@@ -42,7 +42,7 @@
             <div class="eight wide centered column">
                 <h1 class="ui grey center aligned header m-margin-tb-mid"><span style="color:grey">Latest Posts</span></h1>
                 <div class="ui horizontal divider"><i class="far fa-paper-plane"></i></div>
-                <p class="ui centered lead">Checkout the latest posts...</p>
+                <p class="ui centered lead" style="color:grey">Checkout the latest posts...</p>
             </div>
         </div>
         <!--latest post list-->
@@ -50,8 +50,8 @@
             <div class="ui three column center aligned stackable divided grid">
                 <!--column 1-->
                 <div class="column column-feature" th:each="blog : ${recommendBlogs}">
-                    <h2 class="ui center aligned header">
-                        <span style="color:dimgrey" th:text="${blog.title}">Header</span>
+                    <h2 class="ui center aligned teal header" th:text="${blog.title}">
+                        Header
                     </h2>
                     <p class="m-text" th:text="|${blog.description}...|">Blog description</p>
                     <p><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="ui primary inverted button">Read</a></p>
@@ -76,14 +76,14 @@
                 <div class="ui horizontal divider"><i class="far fa-paper-plane"></i></div>
             </div>
         </div>
-        <div class="fourteen wide column">
-            <div class="ui two column aligned stackable divided grid">
+        <div class="fourteen wide centered column">
+            <div class="ui two column aligned stackable divided grid m-padded-side">
                 <!--explore categories-->
                 <div class="column">
                     <div class="ui segment">
                         <div class="ui two column grid">
                             <div class="column">
-                                <i class="fas fa-bookmark"></i> Categories
+                                <i class="fas fa-bookmark"></i> <span style="color:teal">By categories</span>
                             </div>
                             <div class="right aligned column">
                                 <a href="#" th:href="@{/types/-1}">More <i class="fas fa-angle-double-right"></i></a>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="ui fluid vertical menu">
                             <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
-                                <span class="m-poolside" th:text="${type.name}">Study</span>
+                                <span style="color:teal" th:text="${type.name}">Study</span>
                                 <div class="ui teal left pointing label m-text-mid" th:text="*{type.blogs}!=null ? ${#arrays.length(type.blogs)}">13</div>
                             </a>
                         </div>
@@ -102,7 +102,7 @@
                     <div class="ui segment">
                         <div class="ui two column grid">
                             <div class="column">
-                                <i class="fas fa-tags"></i> Tags
+                                <i class="fas fa-tags"></i> <span style="color:teal">By tags</span>
                             </div>
                             <div class="right aligned column">
                                 <a href="#" th:href="@{/tags/-1}">More <i class="fas fa-angle-double-right"></i></a>
