@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.shell845</groupId>
     <artifactId>myblog</artifactId>
+    <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>myblog</name>
     <description>Demo project for Spring Boot</description>
@@ -31,12 +32,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
