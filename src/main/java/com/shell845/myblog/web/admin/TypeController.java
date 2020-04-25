@@ -48,7 +48,7 @@ public class TypeController {
     @GetMapping(value = "/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         Type type = typeService.getType(id);
-//        System.out.println("----------------editInput-------" + type.toString());
+        System.out.println("----------------editInput-------" + type.toString());
         model.addAttribute("type", type);
         return "admin/input-type";
     }
@@ -85,7 +85,7 @@ public class TypeController {
         if (result.hasErrors()) {
             return "admin/input-type";
         }
-        Type t = typeService.updateType(id,type);
+        Type t = typeService.updateType(id, type);
         if (t == null ) {
             attributes.addFlashAttribute("message", "Update fail");
         } else {

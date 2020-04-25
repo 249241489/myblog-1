@@ -4,23 +4,34 @@
     <title>shell845 | 500</title>
 </head>
 
-<body class="m-sticky-site">
-<!-- Nav bar-->
-<nav th:replace="_fragments :: menu(1)" ></nav>
+<body id="home" class="m-sticky-site">
+<div class="ui inverted masthead centered segment">
+    <div class="ui page grid">
+        <div class="column">
+            <!-- Nav bar-->
+            <nav th:replace="_fragments :: menu(0)" ></nav>
 
-<!-- content -->
-<div class="m-container-small m-padded-tb-large">
-    <div class="ui error message">
-        <div class="ui container">
+            <!-- space -->
+            <div class="m-padded-tb-small"></div>
+            <!--error-->
             <h2 class="ui center aligned header">500</h2>
             <br>
             <h3 class="ui center aligned header">Oops sorry something wrong...</h3>
             <br>
             <br>
             <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--divider-->
+            <div class="m-padded-tb-small"></div>
         </div>
+
     </div>
 </div>
+
 
 <!-- Footer -->
 <main class="m-sticky-site-content"></main>

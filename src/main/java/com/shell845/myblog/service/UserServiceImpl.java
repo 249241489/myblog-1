@@ -22,4 +22,5 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsernameAndPassword(username, DigestUtils.md5DigestAsHex(password.getBytes()));
         return user;
     }
+
 }

@@ -17,7 +17,7 @@
             <div class="ui hidden transition information">
                 <h1 class="ui inverted centered aligned header m-mobile-hide"><span th:text="#{index.slogan}">slogan</span></h1>
                 <p class="ui centered lead m-mobile-hide" th:text="#{index.words}">words</p>
-                <a href="#" class="large basic inverted animated fade ui button m-mobile-hide" th:href="@{/types/-1}">
+                <a href="#" class="large basic inverted animated fade ui button m-mobile-hide" th:href="@{/archives}">
                     <div class="visible content" th:text="#{index.welcome}">welcome</div>
                     <div class="hidden content" th:text="#{index.readmore}">read more</div>
                 </a>
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="ui centered page grid">
-        <a class="ui teal button m-margin-tb-mid" href="#" th:href="@{/types/-1}">Read More Posts</a>
+        <a class="ui teal button m-margin-tb-mid" href="#" th:href="@{/categories/-1}">Read More Posts</a>
     </div>
 </div>
 
@@ -86,11 +86,11 @@
                                 <i class="fas fa-bookmark"></i> <span style="color:teal">By categories</span>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" th:href="@{/types/-1}">More <i class="fas fa-angle-double-right"></i></a>
+                                <a href="#" th:href="@{/categories/-1}">More <i class="fas fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="ui fluid vertical menu">
-                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
+                            <a href="#" th:href="@{/categories/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
                                 <span style="color:teal" th:text="${type.name}">Study</span>
                                 <div class="ui teal left pointing label m-text-mid" th:text="*{type.blogs}!=null ? ${#arrays.length(type.blogs)}">13</div>
                             </a>

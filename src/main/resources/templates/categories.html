@@ -22,7 +22,7 @@
                 <!--category list-->
                 <div class="row">
                     <div class="ui labeled button m-margin-tb-mini" th:each="type : ${types}">
-                        <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic button" th:classappend="${type.id==activeTypeId} ? 'teal'" th:text="${type.name}">test category a</a>
+                        <a href="#" th:href="@{/categories/{id}(id=${type.id})}" class="ui basic button" th:classappend="${type.id==activeTypeId} ? 'teal'" th:text="${type.name}">test category a</a>
                         <div class="ui basic left pointing label" th:classappend="${type.id==activeTypeId} ? 'teal'" th:text="${#arrays.length(type.blogs)}"> 10</div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                     <i class="eye icon"></i> <span th:text="${blog.views}">2834</span>
                                 </div-->
                                 <div class="item">
-                                    <a href="#" th:href="@{/types/{id}(id=${blog.type.id})}" class="ui olive basic left pointing mini label m-text-thin m-padded-mini"><span th:text="${blog.type.name}">a type</span></a>
+                                    <a href="#" th:href="@{/categories/{id}(id=${blog.type.id})}" class="ui olive basic left pointing mini label m-text-thin m-padded-mini"><span th:text="${blog.type.name}">a type</span></a>
                                 </div>
                             </div>
                         </div>
