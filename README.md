@@ -7,4 +7,4 @@
 
 Demo
 
-![Readme image](https://github.com/shell845/navalbattle/blob/master/src/images/readMeImage.png)
+![Readme image](https://github.com/shell845/myblog/blob/master/src/main/resources/static/images/demo.png)
