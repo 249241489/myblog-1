@@ -31,9 +31,6 @@ build/
 .vscode/
 
 ### Customize ###
-src/main/resources/*.yml
-src/main/resources/META-INF
-src/main/resources/*.xml
 HELP.md
 mvnw
 *.cmd
@@ -42,3 +39,4 @@ log
 target
 .DS_Store
 README.md
+
